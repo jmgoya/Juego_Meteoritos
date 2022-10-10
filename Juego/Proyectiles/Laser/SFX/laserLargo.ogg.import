@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/laserLargo.ogg-5582b01fb0d29618c8cc2d3b8f541746.oggstr"
+
+[deps]
+
+source_file="res://Juego/Proyectiles/Laser/SFX/laserLargo.ogg"
+dest_files=[ "res://.import/laserLargo.ogg-5582b01fb0d29618c8cc2d3b8f541746.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

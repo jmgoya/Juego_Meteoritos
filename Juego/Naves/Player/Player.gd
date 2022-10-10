@@ -13,6 +13,7 @@ var dir_rotacion:int = 0
 
 ## Atributos onready
 onready var canion:Canion = $Canion
+onready var laser:RayoLaser = $LaserBeam2D
 
 ## Metodos
 func _integrate_forces(state: Physics2DDirectBodyState) -> void:
@@ -38,10 +39,16 @@ func player_input() -> void:
 	elif Input.is_action_pressed("rotar_horario"):
 		dir_rotacion += 1
 	
-	# Disparo
-	if Input.is_action_pressed("disparo_principal"):
+	# Disparo primario
+	if Input.is_action_just_pressed("disparo_principal"):
 		canion.set_esta_disparando(true)
 	
 	if Input.is_action_just_released("disparo_principal"):
 		canion.set_esta_disparando(false)
-		
+	
+	# Disparo Secundario
+	if Input.is_action_just_pressed("disparo_secundario"):
+		laser.set_is_casting(true)
+	
+	if Input.is_action_just_released("disparo_secundario"):
+		laser.set_is_casting(false)

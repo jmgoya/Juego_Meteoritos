@@ -1,5 +1,6 @@
 #Player.gd
 class_name Player
+
 extends RigidBody2D
 
 ## Enums (enumerables)
@@ -58,10 +59,12 @@ func _unhandled_input(event: InputEvent) -> void:
 		motor_sfx.sonido_off()
 
 ## Metodos Custom
+func destruir() -> void:
+	cambiar_estado(ESTADOS.MUERTO)
+	
 func player_input() -> void:
 	if not jugador_activo():
 		return
-	
 	# Empuje
 	empuje = Vector2.ZERO
 	if Input.is_action_pressed("mover_adelante"):
@@ -96,6 +99,7 @@ func cambiar_estado(nuevo_estado: int) -> void:
 		ESTADOS.MUERTO:
 			colisionador.set_deferred("disabled", true)
 			canion.set_puede_disparar(true)
+			Eventos.emit_signal("nave_destruida", global_position)
 			queue_free()
 		ESTADOS.INVENCIBLE:
 			colisionador.set_deferred("disabled", true)

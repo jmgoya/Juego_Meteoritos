@@ -2,6 +2,8 @@
 class_name Player
 extends RigidBody2D
 
+## Enums (enumerables)
+enum ESTADOS {SPAWN, VIVO, INVENCIBLE, MUERTO}
 
 ## Atributos Export
 export var potencia_motor:int = 20
@@ -11,14 +13,20 @@ export var estela_maxima:int = 150
 ## Atributos
 var empuje:Vector2 = Vector2.ZERO
 var dir_rotacion:int = 0
+var estado_actual:int = ESTADOS.SPAWN
 
 ## Atributos onready
 onready var canion:Canion = $Canion
 onready var laser:RayoLaser = $LaserBeam2D
 onready var estela:Estela = $EstelaPuntoInicio/Trail2D
 onready var motor_sfx:Motor = $MotorSFX
+onready var colisionador:CollisionShape2D = $CollisionShape2D
+
 
 ## Metodos
+func _ready() -> void:
+	cambiar_estado(estado_actual)
+
 func _integrate_forces(state: Physics2DDirectBodyState) -> void:
 	apply_torque_impulse(dir_rotacion * potencia_rotacion)
 	apply_central_impulse(empuje.rotated(rotation))
@@ -27,6 +35,9 @@ func _process(delta: float) -> void:
 	player_input()
 
 func _unhandled_input(event: InputEvent) -> void:
+	if not jugador_activo():
+		return
+		
 	# Disparo Secundario
 	if event.is_action_pressed("disparo_secundario"):
 		laser.set_is_casting(true)
@@ -48,6 +59,9 @@ func _unhandled_input(event: InputEvent) -> void:
 
 ## Metodos Custom
 func player_input() -> void:
+	if not jugador_activo():
+		return
+	
 	# Empuje
 	empuje = Vector2.ZERO
 	if Input.is_action_pressed("mover_adelante"):
@@ -71,4 +85,32 @@ func player_input() -> void:
 	if Input.is_action_just_released("disparo_principal"):
 		canion.set_esta_disparando(false)
 	
+func cambiar_estado(nuevo_estado: int) -> void:
+	match nuevo_estado:
+		ESTADOS.SPAWN:
+			colisionador.set_deferred("disabled", true)
+			canion.set_puede_disparar(false)
+		ESTADOS.VIVO:
+			colisionador.set_deferred("disabled", false)
+			canion.set_puede_disparar(true)
+		ESTADOS.MUERTO:
+			colisionador.set_deferred("disabled", true)
+			canion.set_puede_disparar(true)
+			queue_free()
+		ESTADOS.INVENCIBLE:
+			colisionador.set_deferred("disabled", true)
+		_:
+			printerr("Error cambiando los estados")
+	estado_actual = nuevo_estado
 	
+func jugador_activo () -> bool:
+	if estado_actual in [ESTADOS.MUERTO, ESTADOS.SPAWN]:
+		return false
+	else:
+		return true
+
+## señales internas
+func _on_AnimationPlayer_animation_finished(anim_name: String) -> void:
+	if anim_name == "spawn":
+		cambiar_estado(ESTADOS.VIVO)
+

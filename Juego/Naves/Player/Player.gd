@@ -10,6 +10,7 @@ enum ESTADOS {SPAWN, VIVO, INVENCIBLE, MUERTO}
 export var potencia_motor:int = 20
 export var potencia_rotacion:int = 280
 export var estela_maxima:int = 150
+export var hitpoints:float = 100
 
 ## Atributos
 var empuje:Vector2 = Vector2.ZERO
@@ -22,7 +23,11 @@ onready var laser:RayoLaser = $LaserBeam2D
 onready var estela:Estela = $EstelaPuntoInicio/Trail2D
 onready var motor_sfx:Motor = $MotorSFX
 onready var colisionador:CollisionShape2D = $CollisionShape2D
+onready var impacto_sfx:AudioStreamPlayer = $ImpactosSFX
+onready var escudo:Escudo = $Escudo
 
+#JMG
+onready var animacion:AnimationPlayer = $AnimationPlayer
 
 ## Metodos
 func _ready() -> void:
@@ -38,7 +43,10 @@ func _process(delta: float) -> void:
 func _unhandled_input(event: InputEvent) -> void:
 	if not jugador_activo():
 		return
-		
+	# Control de Escudo
+	if event.is_action_pressed("escudo") and not escudo.get_esta_activado():
+		escudo.activar()
+	
 	# Disparo Secundario
 	if event.is_action_pressed("disparo_secundario"):
 		laser.set_is_casting(true)
@@ -106,12 +114,19 @@ func cambiar_estado(nuevo_estado: int) -> void:
 		_:
 			printerr("Error cambiando los estados")
 	estado_actual = nuevo_estado
-	
+
 func jugador_activo () -> bool:
 	if estado_actual in [ESTADOS.MUERTO, ESTADOS.SPAWN]:
 		return false
 	else:
 		return true
+
+func recibir_danio(intensidad_danio:float) -> void:
+	hitpoints -= intensidad_danio
+	if hitpoints <= 0:
+		destruir()
+	#animacion.play("impacto")
+	impacto_sfx.play()
 
 ## señales internas
 func _on_AnimationPlayer_animation_finished(anim_name: String) -> void:

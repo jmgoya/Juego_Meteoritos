@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/impactos.ogg-cb40253492e44463102528757c6931e2.oggstr"
+
+[deps]
+
+source_file="res://Juego/Naves/sfx/impactos.ogg"
+dest_files=[ "res://.import/impactos.ogg-cb40253492e44463102528757c6931e2.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

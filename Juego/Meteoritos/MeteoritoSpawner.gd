@@ -4,12 +4,7 @@ extends Position2D
 
 ## variables export
 export var direccion:Vector2 = Vector2(1, 1)
-export var rango_tamanio_meteorito:Vector2 = Vector2(0.5, 2.2)
-
-func _ready() -> void:
-	## temporal para que arranque primero su dueño
-	yield(owner, "ready" )
-	spawnear_meteorito()
+export var rango_tamanio_meteorito:Vector2 = Vector2(0.5, 1.5)
 
 func spawnear_meteorito() -> void:
 	Eventos.emit_signal(

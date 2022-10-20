@@ -78,6 +78,7 @@ tracks/0/keys = {
 }
 
 [node name="Player" type="RigidBody2D"]
+scale = Vector2( 0.8, 0.8 )
 z_index = 50
 collision_mask = 22
 physics_material_override = ExtResource( 2 )
@@ -129,6 +130,9 @@ stream = ExtResource( 8 )
 bus = "SFX"
 
 [node name="Escudo" parent="." instance=ExtResource( 9 )]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+current = true
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]

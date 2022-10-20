@@ -213,30 +213,18 @@ tracks/16/loop_wrap = true
 tracks/16/imported = false
 tracks/16/enabled = true
 tracks/16/keys = {
-"times": PoolRealArray( 0, 0.3 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PoolRealArray( 0.1 ),
+"transitions": PoolRealArray( 1 ),
 "update": 1,
-"values": [ true, false ]
+"values": [ false ]
 }
-tracks/17/type = "value"
-tracks/17/path = NodePath("Sprite:scale")
+tracks/17/type = "audio"
+tracks/17/path = NodePath("Explota_stereo")
 tracks/17/interp = 1
 tracks/17/loop_wrap = true
 tracks/17/imported = false
 tracks/17/enabled = true
 tracks/17/keys = {
-"times": PoolRealArray( 0, 0.2 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 0,
-"values": [ Vector2( 1, 1 ), Vector2( 0, 0 ) ]
-}
-tracks/18/type = "audio"
-tracks/18/path = NodePath("Explota_stereo")
-tracks/18/interp = 1
-tracks/18/loop_wrap = true
-tracks/18/imported = false
-tracks/18/enabled = true
-tracks/18/keys = {
 "clips": [ {
 "end_offset": 0.0,
 "start_offset": 0.0,
@@ -244,13 +232,13 @@ tracks/18/keys = {
 } ],
 "times": PoolRealArray( 0 )
 }
-tracks/19/type = "method"
-tracks/19/path = NodePath(".")
-tracks/19/interp = 1
-tracks/19/loop_wrap = true
-tracks/19/imported = false
-tracks/19/enabled = true
-tracks/19/keys = {
+tracks/18/type = "method"
+tracks/18/path = NodePath(".")
+tracks/18/interp = 1
+tracks/18/loop_wrap = true
+tracks/18/imported = false
+tracks/18/enabled = true
+tracks/18/keys = {
 "times": PoolRealArray( 0.8 ),
 "transitions": PoolRealArray( 1 ),
 "values": [ {
@@ -407,24 +395,12 @@ tracks/11/keys = {
 "values": [ Vector2( 0, 0 ) ]
 }
 tracks/12/type = "value"
-tracks/12/path = NodePath("Sprite:scale")
+tracks/12/path = NodePath("Sprite:visible")
 tracks/12/interp = 1
 tracks/12/loop_wrap = true
 tracks/12/imported = false
 tracks/12/enabled = true
 tracks/12/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Vector2( 1, 1 ) ]
-}
-tracks/13/type = "value"
-tracks/13/path = NodePath("Sprite:visible")
-tracks/13/interp = 1
-tracks/13/loop_wrap = true
-tracks/13/imported = false
-tracks/13/enabled = true
-tracks/13/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 1,
@@ -643,7 +619,7 @@ tracks/16/keys = {
 
 [node name="Meteorito" type="RigidBody2D"]
 collision_layer = 4
-collision_mask = 31
+collision_mask = 27
 physics_material_override = SubResource( 1 )
 gravity_scale = 0.0
 linear_damp = 0.0
@@ -651,6 +627,7 @@ angular_damp = 0.0
 script = ExtResource( 1 )
 
 [node name="Sprite" type="Sprite" parent="."]
+visible = false
 texture = ExtResource( 2 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -673,12 +650,10 @@ anims/impacto = SubResource( 4 )
 texture = ExtResource( 5 )
 
 [node name="Meteordiminuto2" type="Sprite" parent="."]
-scale = Vector2( 0.8, 0.8 )
 texture = ExtResource( 5 )
 
 [node name="Meteordiminuto3" type="Sprite" parent="."]
 texture = ExtResource( 5 )
 
 [node name="Meteordiminuto4" type="Sprite" parent="."]
-scale = Vector2( 1e-05, 1e-05 )
 texture = ExtResource( 5 )

@@ -272,7 +272,7 @@ direccion = Vector2( 0, -1 )
 
 [node name="MeteoritoSpawner12" parent="Spawners" instance=ExtResource( 1 )]
 position = Vector2( -383, 479 )
-direccion = Vector2( 2, 2 )
+direccion = Vector2( 2, -1 )
 
 [node name="MeteoritoSpawner13" parent="Spawners" instance=ExtResource( 1 )]
 position = Vector2( -793, 476 )

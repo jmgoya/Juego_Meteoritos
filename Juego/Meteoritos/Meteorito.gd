@@ -16,6 +16,7 @@ var hitpoints:float
 var esta_en_sector:bool = true setget set_esta_en_sector
 var pos_spawn_original:Vector2
 var vel_spawn_original:Vector2
+var esta_destruido:bool = false
 
 # Setter y getter
 func set_esta_en_sector(valor: bool) -> void:
@@ -58,8 +59,9 @@ func rnd_velocidad() -> float:
 
 func recibir_danio(danio:float) -> void:
 	hitpoints -= danio
-	if hitpoints <= 1:
-			destruir()
+	if hitpoints <= 0 and not esta_destruido:
+		esta_destruido = false
+		destruir()
 	animacion.play("impacto")
 	
 func destruir() -> void:
@@ -67,4 +69,3 @@ func destruir() -> void:
 	animacion.play("destruir")
 	Eventos.emit_signal("destruccion_meteorito", global_position)
 	queue_free()
-	

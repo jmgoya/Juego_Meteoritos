@@ -1,14 +1,22 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://Juego/Naves/Player/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Juego/Niveles/Nivel.gd" type="Script" id=2]
 [ext_resource path="res://default_env.tres" type="Environment" id=3]
 [ext_resource path="res://Juego/Explosiones/Explosion.tscn" type="PackedScene" id=4]
-[ext_resource path="res://Juego/Enemigos/EnemigoDummy.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Juego/Explosiones/ExplosionMeteorito.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Juego/Peligros/SectorDePeligro.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Juego/Meteoritos/Meteorito.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Juego/Meteoritos/SectorMeteoritos.tscn" type="PackedScene" id=8]
+[ext_resource path="res://icon.png" type="Texture" id=9]
+[ext_resource path="res://Juego/Niveles/CamaraJuego.gd" type="Script" id=10]
 
 [node name="NivelTest" type="Node2D"]
 script = ExtResource( 2 )
 explosion = ExtResource( 4 )
+meteorito = ExtResource( 7 )
+explosion_meteorito = ExtResource( 5 )
+sector_meteoritos = ExtResource( 8 )
 
 [node name="Player" parent="." instance=ExtResource( 1 )]
 position = Vector2( 489, 316 )
@@ -16,5 +24,22 @@ position = Vector2( 489, 316 )
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = ExtResource( 3 )
 
-[node name="EnemigoDummy" parent="." instance=ExtResource( 5 )]
-position = Vector2( 294, 181 )
+[node name="TriggersLluviaMeteoritos" type="Node" parent="."]
+
+[node name="SectorDePeligro" parent="TriggersLluviaMeteoritos" instance=ExtResource( 6 )]
+position = Vector2( 713, 328 )
+tipo_peligro = "Meteorito"
+
+[node name="CameraNivel" type="Camera2D" parent="."]
+position = Vector2( 1032, 542 )
+script = ExtResource( 10 )
+
+[node name="TweenZoom" type="Tween" parent="CameraNivel"]
+
+[node name="Sprite" type="Sprite" parent="."]
+position = Vector2( 709, 152 )
+texture = ExtResource( 9 )
+
+[node name="TweenCamara" type="Tween" parent="."]
+
+[connection signal="tween_completed" from="TweenCamara" to="." method="_on_TweenCamara_tween_completed"]

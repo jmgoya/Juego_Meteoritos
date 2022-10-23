@@ -133,3 +133,6 @@ func _on_AnimationPlayer_animation_finished(anim_name: String) -> void:
 	if anim_name == "spawn":
 		cambiar_estado(ESTADOS.VIVO)
 
+func _on_body_entered(body: Node) -> void:
+	if body is Meteorito:
+		destruir()

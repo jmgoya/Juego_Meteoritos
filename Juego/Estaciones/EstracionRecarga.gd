@@ -33,11 +33,9 @@ func puede_recargar(event: InputEvent) -> bool:
 	return false
 
 func controlar_energia() -> void:
-	print (energia)
 	energia -= radio_energia_entregada
 	if energia <= 0.0:
 		$AudioVacio.play()
-	print ("Energia Estacion ", energia)
 
 # Señales internas
 func _on_AreaRecarga_body_entered(body: Node) -> void:

@@ -36,7 +36,6 @@ func controlar_energia() -> void:
 	energia -= radio_energia_entregada
 	if energia <= 0.0:
 		$AudioVacio.play()
-	print ("Energia Estacion ", energia)
 
 # Señales internas
 func _on_AreaRecarga_body_entered(body: Node) -> void:

@@ -113,8 +113,8 @@ func cambiar_estado(nuevo_estado: int) -> void:
 			canion.set_puede_disparar(true)
 		ESTADOS.MUERTO:
 			colisionador.set_deferred("disabled", true)
-			canion.set_puede_disparar(true)
-			Eventos.emit_signal("nave_destruida", global_position, 2)
+			canion.set_puede_disparar(false)
+			Eventos.emit_signal("nave_destruida", self, global_position, 2)
 			queue_free()
 		ESTADOS.INVENCIBLE:
 			colisionador.set_deferred("disabled", true)

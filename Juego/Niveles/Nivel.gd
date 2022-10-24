@@ -49,13 +49,14 @@ func crear_contenedores() ->void:
 func _on_disparo(proyectil:Proyectil) -> void:
 	contenedor_proyectiles.add_child(proyectil)
 
-func _on_nave_destruida (posicion: Vector2, num_explosiones:int) -> void:
-	transicion_camaras(
-		camara_nivel.global_position,
-		$Player/CameraPlayer.global_position,
-		camara_nivel,
-		0
-	)
+func _on_nave_destruida (nave: Player, posicion: Vector2, num_explosiones:int) -> void:
+	if nave is Player:
+		transicion_camaras(
+			camara_nivel.global_position,
+			$Player/CameraPlayer.global_position,
+			camara_nivel,
+			0
+		)
 	for i in range(num_explosiones):
 		var new_explosion:Node2D = explosion.instance()
 		new_explosion.global_position = posicion
@@ -128,6 +129,15 @@ func control_de_peligros() -> void:
 			tiempo_transicion_camara #* 0.10
 		)
 
+func crear_posicion_aleatoria (rango_horizontal: float, rango_vertical: float) -> Vector2:
+	randomize()
+	var rand_x = rand_range(-rango_horizontal, rango_horizontal)
+	var rand_y =rand_range(-rango_vertical, rango_vertical)
+	return Vector2 (rand_x, rand_y)
+
+## Señales
 func _on_TweenCamara_tween_completed(object: Object, key: NodePath) -> void:
 	if object.name == "CameraPlayer":
 		object.global_position = $Player.global_position
+
+## Conexion señales externas

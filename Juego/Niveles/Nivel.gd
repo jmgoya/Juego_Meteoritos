@@ -49,6 +49,7 @@ func crear_contenedores() ->void:
 func _on_disparo(proyectil:Proyectil) -> void:
 	contenedor_proyectiles.add_child(proyectil)
 
+<<<<<<< Updated upstream
 func _on_nave_destruida (nave: Player, posicion: Vector2, num_explosiones:int) -> void:
 	if nave is Player:
 		transicion_camaras(
@@ -57,6 +58,15 @@ func _on_nave_destruida (nave: Player, posicion: Vector2, num_explosiones:int) -
 			camara_nivel,
 			0
 		)
+=======
+func _on_nave_destruida (posicion: Vector2, num_explosiones:int) -> void:
+	transicion_camaras(
+		camara_nivel.global_position,
+		$Player/CameraPlayer.global_position,
+		camara_nivel,
+		0
+	)
+>>>>>>> Stashed changes
 	for i in range(num_explosiones):
 		var new_explosion:Node2D = explosion.instance()
 		new_explosion.global_position = posicion

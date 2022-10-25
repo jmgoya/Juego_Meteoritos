@@ -110,10 +110,7 @@ tracks/3/keys = {
 script = ExtResource( 3 )
 
 [node name="AreaColision" type="Area2D" parent="."]
-<<<<<<< Updated upstream
 collision_layer = 0
-=======
->>>>>>> Stashed changes
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AreaColision"]
 shape = SubResource( 1 )

@@ -39,10 +39,6 @@ script = ExtResource( 10 )
 
 [node name="TweenCamara" type="Tween" parent="."]
 
-[node name="EstracionRecarga" parent="." instance=ExtResource( 11 )]
-position = Vector2( 5, 2.38419e-07 )
-scale = Vector2( 0.8, 0.8 )
-
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
 
 [node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
@@ -142,5 +138,11 @@ texture = ExtResource( 9 )
 position = Vector2( 286, -32 )
 scale = Vector2( 0.1, 0.1 )
 texture = ExtResource( 9 )
+
+[node name="ContenedorEstaciones" type="Node" parent="."]
+
+[node name="EstracionRecarga" parent="ContenedorEstaciones" instance=ExtResource( 11 )]
+position = Vector2( 5, 2.38419e-07 )
+scale = Vector2( 0.8, 0.8 )
 
 [connection signal="tween_completed" from="TweenCamara" to="." method="_on_TweenCamara_tween_completed"]

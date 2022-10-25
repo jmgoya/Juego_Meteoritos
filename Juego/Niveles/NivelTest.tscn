@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://Juego/Naves/Player/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Juego/Niveles/Nivel.gd" type="Script" id=2]
@@ -10,7 +10,6 @@
 [ext_resource path="res://Juego/Meteoritos/SectorMeteoritos.tscn" type="PackedScene" id=8]
 [ext_resource path="res://icon.png" type="Texture" id=9]
 [ext_resource path="res://Juego/Niveles/CamaraJuego.gd" type="Script" id=10]
-[ext_resource path="res://Juego/Estaciones/EstracionRecarga.tscn" type="PackedScene" id=11]
 
 [node name="NivelTest" type="Node2D"]
 script = ExtResource( 2 )
@@ -20,7 +19,7 @@ explosion_meteorito = ExtResource( 5 )
 sector_meteoritos = ExtResource( 8 )
 
 [node name="Player" parent="." instance=ExtResource( 1 )]
-position = Vector2( 351, 399 )
+position = Vector2( 489, 316 )
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = ExtResource( 3 )
@@ -42,9 +41,5 @@ position = Vector2( 709, 152 )
 texture = ExtResource( 9 )
 
 [node name="TweenCamara" type="Tween" parent="."]
-
-[node name="EstracionRecarga" parent="." instance=ExtResource( 11 )]
-position = Vector2( 5, 2.38419e-07 )
-scale = Vector2( 0.8, 0.8 )
 
 [connection signal="tween_completed" from="TweenCamara" to="." method="_on_TweenCamara_tween_completed"]

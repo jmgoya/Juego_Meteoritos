@@ -56,13 +56,15 @@ func _on_disparo(proyectil:Proyectil) -> void:
 	contenedor_proyectiles.add_child(proyectil)
 
 func _on_nave_destruida (nave: Player, posicion: Vector2, num_explosiones:int) -> void:
-	if nave is Player:
-		transicion_camaras(
-			camara_nivel.global_position,
-			$Player/CameraPlayer.global_position,
-			camara_nivel,
-			0
-		)
+#	print ("Llegamos ", nave.name)
+#	if nave is Player:
+	print ("pasa a la camara del player")
+	transicion_camaras(
+		camara_nivel.global_position,
+		$Player/CameraPlayer.global_position,
+		camara_nivel,
+		0
+	)
 	for i in range(num_explosiones):
 		var new_explosion:Node2D = explosion.instance()
 		new_explosion.global_position = posicion + crear_posicion_aleatoria(100.0, 50.0)

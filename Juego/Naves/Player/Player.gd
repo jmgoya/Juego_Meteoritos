@@ -3,8 +3,8 @@ class_name Player
 extends NaveBase
 
 ## Atributos Export
-export var potencia_motor:int = 20
-export var potencia_rotacion:int = 280
+export var potencia_motor:int = 30
+export var potencia_rotacion:int = 320
 export var estela_maxima:int = 150
 
 ## Atributos
@@ -25,6 +25,10 @@ func get_escudo() -> Escudo:
 	return escudo
 
 ## Metodos 
+func _ready() -> void:
+	print ("El player esta listo")
+	DatosJuego.set_player_actual(self)
+
 func _unhandled_input(event: InputEvent) -> void:
 	if not jugador_activo():
 		return

@@ -24,6 +24,16 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Juego/Proyectiles/Canion.gd"
 }, {
+"base": "EnemigosBase",
+"class": "EnemigoInterceptor",
+"language": "GDScript",
+"path": "res://Juego/Naves/Enemigos/EnemigoInterceptor.gd"
+}, {
+"base": "NaveBase",
+"class": "EnemigosBase",
+"language": "GDScript",
+"path": "res://Juego/Naves/Enemigos/EnemigosBase.gd"
+}, {
 "base": "Area2D",
 "class": "Escudo",
 "language": "GDScript",
@@ -93,6 +103,8 @@ _global_script_class_icons={
 "CamaraJuego": "",
 "CameraPlayer": "",
 "Canion": "",
+"EnemigoInterceptor": "",
+"EnemigosBase": "",
 "Escudo": "",
 "EstacioRecarga": "",
 "Estela": "",
@@ -117,6 +129,7 @@ config/icon="res://playerShip1_orange.png"
 [autoload]
 
 Eventos="*res://Autoloads/Eventos.gd"
+DatosJuego="*res://Autoloads/DatosJuego.gd"
 
 [display]
 

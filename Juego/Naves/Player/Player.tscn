@@ -26,22 +26,17 @@ can_sleep = false
 linear_damp = 1.5
 angular_damp = 4.5
 script = ExtResource( 3 )
-potencia_motor = 20
-potencia_rotacion = 280
+potencia_motor = 30
+potencia_rotacion = 320
 estela_maxima = 150
 
 [node name="Sprite" parent="." index="0"]
 rotation = 1.5708
+scale = Vector2( 1e-05, 1e-05 )
 texture = ExtResource( 1 )
 
 [node name="CollisionShape2D" parent="." index="1"]
 shape = SubResource( 1 )
-
-[node name="PuntoIzquierdo" parent="Canion" index="0"]
-position = Vector2( 0, -36 )
-
-[node name="PuntoDerecho" parent="Canion" index="1"]
-position = Vector2( 0, 36 )
 
 [node name="Escudo" parent="." index="4" instance=ExtResource( 9 )]
 

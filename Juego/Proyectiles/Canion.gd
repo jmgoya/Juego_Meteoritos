@@ -5,7 +5,7 @@ extends Node2D
 ## Atributos export
 export var proyectil:PackedScene = null
 export var cadencia_disparo:float = 0.25
-export var velocidad_proyectil:int = 1600
+export var velocidad_proyectil:int = 1100
 export var danio_proyectil:int = 1
 
 ## Atributos onready
@@ -42,6 +42,7 @@ func almacenar_puntos_disparo () -> void:
 			puntos_disparo.append(nodo)
 
 func disparar() ->void:
+	print ("dispara el ", owner.name)
 	esta_enfriado = false
 	disparo_sfx.play()
 	timer_enfriamiento.start()
@@ -55,6 +56,8 @@ func disparar() ->void:
 		)
 		Eventos.emit_signal("disparo", new_proyectil)
 
+
 func _on_TimerEnfriamiento_timeout() -> void:
 	esta_enfriado = true
+	print("FRIO")
 	disparo_sfx.stop()

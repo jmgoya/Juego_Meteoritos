@@ -9,10 +9,10 @@ script = ExtResource( 1 )
 proyectil = ExtResource( 2 )
 
 [node name="PuntoIzquierdo" type="Position2D" parent="."]
-position = Vector2( 1, -36 )
+position = Vector2( 0, -36 )
 
 [node name="PuntoDerecho" type="Position2D" parent="."]
-position = Vector2( 2, 36 )
+position = Vector2( 0, 36 )
 
 [node name="DisparoSFX" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource( 3 )

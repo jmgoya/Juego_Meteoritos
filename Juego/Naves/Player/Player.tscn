@@ -15,6 +15,7 @@
 radius = 40.2492
 
 [node name="Player" instance=ExtResource( 10 )]
+scale = Vector2( 0.6, 0.6 )
 z_index = 50
 z_as_relative = false
 collision_layer = 1

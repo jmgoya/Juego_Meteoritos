@@ -4,7 +4,7 @@ extends RayCast2D
 
 ## Variables Export
 # implementamos energia y radio de desgaste
-export var energia:float = 100
+export var energia:float = 200
 export var radio_danio:float = 50
 export var radio_desgaste:float = -40
 

@@ -34,6 +34,7 @@ func conectar_seniales() ->void:
 	Eventos.connect("sector_peligro", self, "_on_sector_peligro")
 	Eventos.connect("spawn_meteorito", self, "_on_spawn_meteoritos")
 	Eventos.connect("destruccion_meteorito", self, "_on_meteorito_destruido")
+	Eventos.connect("base_destruida", self,"_on_base_destruida")
 
 func crear_contenedores() ->void:
 	# contenedor proyectiles
@@ -59,12 +60,26 @@ func crear_posicion_aleatoria(rango_horizontal: float, rango_vertical: float) ->
 	var rand_y = rand_range(-rango_vertical, rango_vertical)
 	return Vector2 (rand_x, rand_y)
 
+func  crear_explosion(
+	posicion: Vector2,
+	num_e: int = 1,
+	intervalo: float = 0.0,
+	rangos_aleatorios: Vector2 = Vector2(0.0,0.0)
+	) -> void:
+		for _i in range (num_e):
+			var new_explosion:Node2D = explosion.instance()
+			new_explosion.global_position = posicion + crear_posicion_aleatoria(
+				rangos_aleatorios.x,
+				rangos_aleatorios.y
+			)
+			add_child(new_explosion)
+			yield(get_tree().create_timer(intervalo),"timeout")
+
 ## Conexion señales externas
 func _on_disparo(proyectil:Proyectil) -> void:
 	contenedor_proyectiles.add_child(proyectil)
 
 func _on_nave_destruida (nave: Player, posicion: Vector2, num_explosiones:int) -> void:
-#	print ("Llegamos ", nave.name)
 	if nave is Player:
 		transicion_camaras(
 			camara_nivel.global_position,
@@ -72,11 +87,7 @@ func _on_nave_destruida (nave: Player, posicion: Vector2, num_explosiones:int) -
 			camara_nivel,
 			0
 		)
-	for i in range(num_explosiones):
-		var new_explosion:Node2D = explosion.instance()
-		new_explosion.global_position = posicion + crear_posicion_aleatoria(100.0, 50.0)
-		add_child(new_explosion)
-		yield(get_tree().create_timer(0.6), "timeout")
+	crear_explosion(posicion, num_explosiones, 0.6, Vector2(100.0,50.0))
 
 func _on_spawn_meteoritos(pos_spawn: Vector2, dir_meteorito: Vector2, tamanio: float) -> void:
 	var new_meteorito:Meteorito = meteorito.instance()
@@ -102,7 +113,7 @@ func _on_sector_peligro(centro_cam:Vector2, tipo_peligro:String, num_peligros:in
 func crear_sector_enemigos(num_enemigos: int) -> void:
 	for i in range(num_enemigos):
 		var new_interceptor:EnemigoInterceptor = enemigo_interceptor.instance()
-		var spawn_pos:Vector2 = crear_posicion_aleatoria(1000.0, 800.0)
+		var spawn_pos:Vector2 = crear_posicion_aleatoria(1500.0, 1000.0)
 		new_interceptor.global_position = player.global_position + spawn_pos
 		contenedor_enemigos.add_child(new_interceptor)
 
@@ -137,7 +148,6 @@ func transicion_camaras(desde:Vector2, hasta:Vector2, camara_actual:Camera2D, ti
 
 func control_de_peligros() -> void:
 	peligros_totales -= 1
-	print(peligros_totales)
 	if peligros_totales == 0:
 		contenedor_sector_meteoritos.get_child(0).queue_free()
 		$Player/CameraPlayer.set_puede_hacer_zoom(true)
@@ -150,6 +160,11 @@ func control_de_peligros() -> void:
 			$Player/CameraPlayer,
 			tiempo_transicion_camara #* 0.10
 		)
+
+func _on_base_destruida(partes_pos: Array) -> void:
+	for posicion in partes_pos:
+		crear_explosion(posicion)
+		yield(get_tree().create_timer(0.5),"timeout")
 
 ## Señales internas
 func _on_TweenCamara_tween_completed(object: Object, key: NodePath) -> void:

@@ -10,7 +10,7 @@ height = 26.0001
 [node name="ProyectilEnemigo" instance=ExtResource( 1 )]
 z_index = 39
 collision_layer = 16
-collision_mask = 5
+collision_mask = 1
 
 [node name="Sprite" parent="." index="0"]
 modulate = Color( 0, 12.3, 1.34531, 1 )

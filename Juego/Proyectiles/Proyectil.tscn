@@ -4,6 +4,7 @@
 [ext_resource path="res://Juego/Proyectiles/Proyectil.gd" type="Script" id=2]
 
 [node name="Proyectil" type="Area2D"]
+light_mask = 0
 z_as_relative = false
 collision_layer = 0
 collision_mask = 0

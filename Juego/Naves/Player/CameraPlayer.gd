@@ -21,10 +21,8 @@ func _unhandled_input(event: InputEvent) -> void:
 
 ## Metodos Custom
 func controlar_zoom(mod_zoom: float) -> void:
-	print (zoom)
 	var zoom_x = clamp(zoom.x + mod_zoom, zoom_minimo, zoom_maximo)
 	var zoom_y = clamp(zoom.y + mod_zoom, zoom_minimo, zoom_maximo)
-	print (zoom_x, zoom_y)
 	zoom_suavizado(zoom_x, zoom_y, 0.15)
 
 func zoom_suavizado(nuevo_zoom_x: float, nuevo_zoom_y: float, tiempo_transicion: float) -> void:

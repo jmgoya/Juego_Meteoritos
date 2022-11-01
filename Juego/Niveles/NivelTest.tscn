@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://Juego/Naves/Player/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Juego/Niveles/Nivel.gd" type="Script" id=2]
@@ -13,8 +13,6 @@
 [ext_resource path="res://Juego/Estaciones/EstracionRecarga.tscn" type="PackedScene" id=11]
 [ext_resource path="res://Juego/Naves/Enemigos/EnemigoInterceptor.tscn" type="PackedScene" id=12]
 [ext_resource path="res://Juego/Estaciones/BaseEnemiga.tscn" type="PackedScene" id=13]
-[ext_resource path="res://Juego/Naves/Enemigos/EnemigoOrbital.tscn" type="PackedScene" id=14]
-[ext_resource path="res://Juego/Naves/Enemigos/EnemigoPequenio.tscn" type="PackedScene" id=15]
 
 [node name="NivelTest" type="Node2D"]
 script = ExtResource( 2 )
@@ -154,19 +152,25 @@ position = Vector2( 844, 561 )
 tipo_peligro = "Enemigo"
 numero_peligros = 2
 
+[node name="Player" parent="." instance=ExtResource( 1 )]
+position = Vector2( 1677, 1007 )
+
 [node name="ContenedorBaseEnemiga" type="Node" parent="."]
 
 [node name="BaseEnemiga" parent="ContenedorBaseEnemiga" instance=ExtResource( 13 )]
-position = Vector2( -64, 902 )
+position = Vector2( -969, 959 )
 rotation = -4.46638e-06
 
-[node name="EnemigoOrbital" parent="ContenedorBaseEnemiga" instance=ExtResource( 14 )]
-position = Vector2( 486, 1030 )
+[node name="BaseEnemiga4" parent="ContenedorBaseEnemiga" instance=ExtResource( 13 )]
+position = Vector2( 2006, 2896 )
+rotation = -4.46638e-06
 
-[node name="Player" parent="." instance=ExtResource( 1 )]
-position = Vector2( 565, 557 )
+[node name="BaseEnemiga2" parent="ContenedorBaseEnemiga" instance=ExtResource( 13 )]
+position = Vector2( 1965, -1336 )
+rotation = -4.46638e-06
 
-[node name="EnemigoPequenio" parent="." instance=ExtResource( 15 )]
-position = Vector2( 732, 823 )
+[node name="BaseEnemiga3" parent="ContenedorBaseEnemiga" instance=ExtResource( 13 )]
+position = Vector2( 4862, 1023 )
+rotation = -4.46638e-06
 
 [connection signal="tween_completed" from="TweenCamara" to="." method="_on_TweenCamara_tween_completed"]

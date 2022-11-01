@@ -26,7 +26,6 @@ func get_escudo() -> Escudo:
 
 ## Metodos 
 func _ready() -> void:
-	print ("El player esta listo")
 	DatosJuego.set_player_actual(self)
 
 func _unhandled_input(event: InputEvent) -> void:

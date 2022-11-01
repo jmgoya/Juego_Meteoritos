@@ -35,6 +35,7 @@ func conectar_seniales() ->void:
 	Eventos.connect("spawn_meteorito", self, "_on_spawn_meteoritos")
 	Eventos.connect("destruccion_meteorito", self, "_on_meteorito_destruido")
 	Eventos.connect("base_destruida", self,"_on_base_destruida")
+	Eventos.connect("spawn_orbital", self, "_on_spawn_orbital")
 
 func crear_contenedores() ->void:
 	# contenedor proyectiles
@@ -144,7 +145,6 @@ func transicion_camaras(desde:Vector2, hasta:Vector2, camara_actual:Camera2D, ti
 	)
 	camara_actual.current = true
 	$TweenCamara.start()
-	print (camara_actual.scale)
 
 func control_de_peligros() -> void:
 	peligros_totales -= 1
@@ -161,10 +161,13 @@ func control_de_peligros() -> void:
 			tiempo_transicion_camara #* 0.10
 		)
 
-func _on_base_destruida(partes_pos: Array) -> void:
+func _on_base_destruida(base, partes_pos: Array) -> void:
 	for posicion in partes_pos:
 		crear_explosion(posicion)
 		yield(get_tree().create_timer(0.5),"timeout")
+
+func _on_spawn_orbital(enemigo: EnemigoOrbital) -> void:
+	contenedor_enemigos.add_child(enemigo)
 
 ## Señales internas
 func _on_TweenCamara_tween_completed(object: Object, key: NodePath) -> void:

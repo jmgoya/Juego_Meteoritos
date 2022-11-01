@@ -24,5 +24,4 @@ func _on_nave_destruida(nave: NaveBase, _posicion, _explosiones) -> void:
 func rotar_hacia_player() -> void:
 	if player_objetivo:
 		dir_player =  player_objetivo.global_position - global_position
-		print (player_objetivo.name)
 		rotation = dir_player.angle()

@@ -26,8 +26,6 @@ func _process(delta: float) -> void:
 ## Metodos Custom
 func controlar_energia(consumo: float) ->void:
 	energia += consumo
-	#debug, QUITAR
-	print ("Energia del Escudo: ", energia)
 	if energia > energia_original:
 		energia = energia_original
 	elif energia <= 0.0:

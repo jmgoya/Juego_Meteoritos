@@ -42,7 +42,6 @@ func almacenar_puntos_disparo () -> void:
 			puntos_disparo.append(nodo)
 
 func disparar() ->void:
-	print ("dispara el ", owner.name)
 	esta_enfriado = false
 	disparo_sfx.play()
 	timer_enfriamiento.start()
@@ -56,8 +55,6 @@ func disparar() ->void:
 		)
 		Eventos.emit_signal("disparo", new_proyectil)
 
-
 func _on_TimerEnfriamiento_timeout() -> void:
 	esta_enfriado = true
-	print("FRIO")
 	disparo_sfx.stop()

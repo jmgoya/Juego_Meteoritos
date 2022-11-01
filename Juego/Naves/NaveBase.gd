@@ -59,6 +59,6 @@ func _on_AnimationPlayer_animation_finished(anim_name: String) -> void:
 		cambiar_estado(ESTADOS.VIVO)
 
 func _on_body_entered(body: Node) -> void:
-	if body is Meteorito:
+	if body is Meteorito or (body.name == "Player"):
 		body.destruir()
 		destruir()

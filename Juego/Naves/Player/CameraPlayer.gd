@@ -5,8 +5,8 @@ extends CamaraJuego
 
 ## Variables Export
 export var variacion_zoom: float = 0.1
-export var zoom_minimo: float = 0.6
-export var zoom_maximo: float = 2.0
+export var zoom_minimo: float = 0.9
+export var zoom_maximo: float = 2.5
 
 ## Setters y Getters
 func set_puede_hacer_zoom(puede: bool) -> void:

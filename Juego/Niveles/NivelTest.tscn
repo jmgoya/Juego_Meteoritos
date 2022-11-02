@@ -158,11 +158,11 @@ position = Vector2( 1677, 1007 )
 [node name="ContenedorBaseEnemiga" type="Node" parent="."]
 
 [node name="BaseEnemiga" parent="ContenedorBaseEnemiga" instance=ExtResource( 13 )]
-position = Vector2( -969, 959 )
+position = Vector2( 4199, -429 )
 rotation = -4.46638e-06
 
 [node name="BaseEnemiga4" parent="ContenedorBaseEnemiga" instance=ExtResource( 13 )]
-position = Vector2( 2006, 2896 )
+position = Vector2( 1985, 2597 )
 rotation = -4.46638e-06
 
 [node name="BaseEnemiga2" parent="ContenedorBaseEnemiga" instance=ExtResource( 13 )]
@@ -170,7 +170,7 @@ position = Vector2( 1965, -1336 )
 rotation = -4.46638e-06
 
 [node name="BaseEnemiga3" parent="ContenedorBaseEnemiga" instance=ExtResource( 13 )]
-position = Vector2( 4862, 1023 )
+position = Vector2( 4243, 1557 )
 rotation = -4.46638e-06
 
 [connection signal="tween_completed" from="TweenCamara" to="." method="_on_TweenCamara_tween_completed"]

@@ -9,6 +9,7 @@ export var explosion_meteorito:PackedScene = null
 export var sector_meteoritos:PackedScene = null
 export var tiempo_transicion_camara:int = 2
 export var enemigo_interceptor:PackedScene = null
+export var rele_masa:PackedScene = null
 
 ## Atributos onready
 onready var contenedor_proyectiles:Node
@@ -20,12 +21,16 @@ onready var contenedor_enemigos:Node
 # Atributos (variable global de la calse)
 var peligros_totales:int = 0
 var player:Player = null
+var numero_bases_enemigas = 0
 
 ## Metodos
 func _ready() -> void:
 	conectar_seniales()
 	crear_contenedores()
 	player = DatosJuego.get_player_actual()
+	numero_bases_enemigas = contabilizar_bases_enemigas()
+	player = DatosJuego.get_player_actual()
+	
 
 ## Metodos Custom
 func conectar_seniales() ->void:
@@ -76,40 +81,13 @@ func  crear_explosion(
 			add_child(new_explosion)
 			yield(get_tree().create_timer(intervalo),"timeout")
 
-## Conexion señales externas
-func _on_disparo(proyectil:Proyectil) -> void:
-	contenedor_proyectiles.add_child(proyectil)
+func contabilizar_bases_enemigas() -> int:
+	return $ContenedorBaseEnemiga.get_child_count()
 
-func _on_nave_destruida (nave: Player, posicion: Vector2, num_explosiones:int) -> void:
-	if nave is Player:
-		transicion_camaras(
-			camara_nivel.global_position,
-			$Player/CameraPlayer.global_position,
-			camara_nivel,
-			0
-		)
-	crear_explosion(posicion, num_explosiones, 0.6, Vector2(100.0,50.0))
-
-func _on_spawn_meteoritos(pos_spawn: Vector2, dir_meteorito: Vector2, tamanio: float) -> void:
-	var new_meteorito:Meteorito = meteorito.instance()
-	new_meteorito.crear(
-		pos_spawn,
-		dir_meteorito,
-		tamanio
-	)
-	contenedor_meteoritos.add_child(new_meteorito)
-
-func _on_meteorito_destruido(pos: Vector2) -> void:
-	var new_explosion:ExplosionMeteorito = explosion_meteorito.instance()
-	new_explosion.global_position = pos
-	add_child(new_explosion)
-	control_de_peligros()
-
-func _on_sector_peligro(centro_cam:Vector2, tipo_peligro:String, num_peligros:int) ->void:
-	if tipo_peligro == "Meteorito":
-		crear_sector_meteoritos(centro_cam, num_peligros)
-	elif tipo_peligro == "Enemigo":
-		crear_sector_enemigos(num_peligros)
+func crear_rele() -> void:
+	var new_rele_masa:ReleDeMasa = rele_masa.instance()
+	new_rele_masa.global_position = player.global_position + crear_posicion_aleatoria(1000.0, 800.0)
+	add_child(new_rele_masa)
 
 func crear_sector_enemigos(num_enemigos: int) -> void:
 	for i in range(num_enemigos):
@@ -161,10 +139,50 @@ func control_de_peligros() -> void:
 			tiempo_transicion_camara #* 0.10
 		)
 
+## Conexion señales externas
+func _on_disparo(proyectil:Proyectil) -> void:
+	contenedor_proyectiles.add_child(proyectil)
+
+func _on_nave_destruida (nave: Player, posicion: Vector2, num_explosiones:int) -> void:
+	if nave is Player:
+		transicion_camaras(
+			camara_nivel.global_position,
+			$Player/CameraPlayer.global_position,
+			camara_nivel,
+			0
+		)
+	crear_explosion(posicion, num_explosiones, 0.6, Vector2(100.0,50.0))
+
+func _on_spawn_meteoritos(pos_spawn: Vector2, dir_meteorito: Vector2, tamanio: float) -> void:
+	var new_meteorito:Meteorito = meteorito.instance()
+	new_meteorito.crear(
+		pos_spawn,
+		dir_meteorito,
+		tamanio
+	)
+	contenedor_meteoritos.add_child(new_meteorito)
+
+func _on_meteorito_destruido(pos: Vector2) -> void:
+	var new_explosion:ExplosionMeteorito = explosion_meteorito.instance()
+	new_explosion.global_position = pos
+	add_child(new_explosion)
+	control_de_peligros()
+
+func _on_sector_peligro(centro_cam:Vector2, tipo_peligro:String, num_peligros:int) ->void:
+	if tipo_peligro == "Meteorito":
+		crear_sector_meteoritos(centro_cam, num_peligros)
+	elif tipo_peligro == "Enemigo":
+		crear_sector_enemigos(num_peligros)
+
+## Señales externas
 func _on_base_destruida(base, partes_pos: Array) -> void:
 	for posicion in partes_pos:
 		crear_explosion(posicion)
 		yield(get_tree().create_timer(0.5),"timeout")
+	
+	numero_bases_enemigas -=1
+	if numero_bases_enemigas == 0:
+		crear_rele()
 
 func _on_spawn_orbital(enemigo: EnemigoOrbital) -> void:
 	contenedor_enemigos.add_child(enemigo)

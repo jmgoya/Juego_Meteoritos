@@ -93,3 +93,9 @@ func jugador_activo () -> bool:
 		return false
 	else:
 		return true
+
+func desactivar_controles() -> void:
+	cambiar_estado(ESTADOS.SPAWN)
+	empuje = Vector2.ZERO
+	motor_sfx.sonido_off()
+	laser.set_is_casting(false)

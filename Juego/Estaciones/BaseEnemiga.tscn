@@ -9,7 +9,8 @@
 [ext_resource path="res://Juego/Naves/Enemigos/AreaColision.gd" type="Script" id=7]
 [ext_resource path="res://Juego/Naves/Enemigos/EnemigoOrbital.tscn" type="PackedScene" id=8]
 [ext_resource path="res://Juego/Estaciones/PosicionesSpawn.gd" type="Script" id=9]
-[ext_resource path="res://Juego/Estaciones/RutaEnemigo.gd" type="Script" id=10]
+[ext_resource path="res://Juego/Estaciones/RutaEnemigo2.tscn" type="PackedScene" id=10]
+[ext_resource path="res://Juego/Estaciones/RutaEnemigo.tscn" type="PackedScene" id=11]
 
 [sub_resource type="CapsuleShape2D" id=5]
 radius = 44.0
@@ -84,11 +85,6 @@ tracks/1/keys = {
 "values": [ 0.0, 360.0 ]
 }
 
-[sub_resource type="Curve2D" id=8]
-_data = {
-"points": PoolVector2Array( 10.6905, 74.8355, -10.6905, -74.8355, -386, -99.0017, 12.4723, 71.2719, -12.4723, -71.2719, -342.999, -268.002, -32.0722, -30.2907, 32.0722, 30.2907, -221.999, -323.001, -39.1996, 12.4724, 39.1996, -12.4724, -91.998, -439, -3.56344, -35.636, 3.56344, 35.636, -27.9983, -379, -37.418, 49.8902, 37.418, -49.8902, 115.002, -392.999, 0.00017508, -39.1995, -0.00017508, 39.1995, 265.002, -374.999, -58.7993, -0.00026262, 58.7993, 0.00026262, 320.001, -214.999, -85.5262, -26.7273, 85.5262, 26.7273, 423, -80.9981, 58.7993, -1.78153, -58.7993, 1.78153, 388, 35.0017, -39.1994, -42.7633, 39.1994, 42.7633, 413.999, 143.002, 58.7991, 46.327, -58.7991, -46.327, 333.999, 215.001, -57.0173, -46.327, 57.0173, 46.327, 258.998, 356.001, 49.89, 64.1449, -49.89, -64.1449, 91.9982, 393, 12.4722, 92.6535, -12.4722, -92.6535, -61.002, 441, 0, 0, 0, 0, -143.002, 344.999, 60.5812, -23.1631, -60.5812, 23.1631, -261.002, 353.999, -42.7633, 46.3265, 42.7633, -46.3265, -291.001, 232.999, 71.272, -17.8177, -71.272, 17.8177, -350.001, 142.998, -35.6363, 80.1807, 35.6363, -80.1807, -466, 55.9979, 8.90876, 51.6722, -8.90876, -51.6722, -386, -99.0017 )
-}
-
 [node name="BaseEnemiga" type="Node2D"]
 position = Vector2( 0, -1 )
 rotation = -6.28319
@@ -96,6 +92,7 @@ z_index = 30
 script = ExtResource( 6 )
 hitpoints = 300.0
 enemigo_orbital = ExtResource( 8 )
+rutas = [ ExtResource( 10 ), ExtResource( 11 ) ]
 
 [node name="Sprites" type="Node2D" parent="."]
 
@@ -166,10 +163,6 @@ position = Vector2( 500, 0 )
 
 [node name="Oeste" type="Position2D" parent="PosicionesSpawn"]
 position = Vector2( -500, 0 )
-
-[node name="RutaEnemigo" type="Path2D" parent="."]
-curve = SubResource( 8 )
-script = ExtResource( 10 )
 
 [node name="TimerSpawnerEnemigos" type="Timer" parent="."]
 

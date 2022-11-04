@@ -31,7 +31,7 @@ func _ready() -> void:
 	player = DatosJuego.get_player_actual()
 	numero_bases_enemigas = contabilizar_bases_enemigas()
 	player = DatosJuego.get_player_actual()
-	
+	Eventos.emit_signal("nivel_iniciado")
 
 ## Metodos Custom
 func conectar_seniales() ->void:
@@ -133,12 +133,14 @@ func transicion_camaras(desde:Vector2, hasta:Vector2, camara_actual:Camera2D, ti
 
 func control_de_peligros() -> void:
 	peligros_totales -= 1
-	if peligros_totales == 0:
+	Eventos.emit_signal("cambio_numero_meteoritos", peligros_totales)
+	if peligros_totales <= 0:
 		contenedor_sector_meteoritos.get_child(0).queue_free()
 		$Player/CameraPlayer.set_puede_hacer_zoom(true)
 		var zoom_actual = $Player/CameraPlayer.zoom
 		$Player/CameraPlayer.zoom = camara_nivel.zoom
 		$Player/CameraPlayer.zoom_suavizado(zoom_actual.x, zoom_actual.y, 1.0)
+		
 		transicion_camaras( 
 			camara_nivel.global_position,
 			$Player/CameraPlayer.global_position,
@@ -158,6 +160,7 @@ func _on_nave_destruida (nave: Player, posicion: Vector2, num_explosiones:int) -
 			camara_nivel,
 			0
 		)
+		$RestartTimer.start()
 	crear_explosion(posicion, num_explosiones, 0.6, Vector2(100.0,50.0))
 
 func _on_spawn_meteoritos(pos_spawn: Vector2, dir_meteorito: Vector2, tamanio: float) -> void:
@@ -178,6 +181,7 @@ func _on_meteorito_destruido(pos: Vector2) -> void:
 func _on_sector_peligro(centro_cam:Vector2, tipo_peligro:String, num_peligros:int) ->void:
 	if tipo_peligro == "Meteorito":
 		crear_sector_meteoritos(centro_cam, num_peligros)
+		Eventos.emit_signal("cambio_numero_meteoritos", num_peligros)
 	elif tipo_peligro == "Enemigo":
 		crear_sector_enemigos(num_peligros)
 
@@ -198,3 +202,8 @@ func _on_spawn_orbital(enemigo: EnemigoOrbital) -> void:
 func _on_TweenCamara_tween_completed(object: Object, key: NodePath) -> void:
 	if object.name == "CameraPlayer":
 		object.global_position = $Player.global_position
+
+func _on_RestartTimer_timeout() -> void:
+	Eventos.emit_signal("nivel_terminado")
+	yield(get_tree().create_timer(1.0),"timeout")
+	get_tree().reload_current_scene()

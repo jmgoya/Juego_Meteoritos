@@ -8,6 +8,7 @@ _data = {
 }
 
 [node name="RutaEnemigo2" type="Path2D"]
+visible = false
 position = Vector2( 1.33991e-05, -3 )
 curve = SubResource( 9 )
 script = ExtResource( 1 )

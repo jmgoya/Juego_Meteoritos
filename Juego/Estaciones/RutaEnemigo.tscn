@@ -8,5 +8,6 @@ _data = {
 }
 
 [node name="RutaEnemigo" type="Path2D"]
+visible = false
 curve = SubResource( 8 )
 script = ExtResource( 1 )

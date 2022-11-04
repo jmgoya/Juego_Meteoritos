@@ -55,7 +55,6 @@ one_shot = true
 [node name="AnimationPlayer" parent="." index="7" instance=ExtResource( 4 )]
 
 [node name="CameraPlayer" parent="." index="8" instance=ExtResource( 2 )]
-zoom = Vector2( 1.8, 1.8 )
 
 [node name="LaserBeam2D" parent="." index="9" instance=ExtResource( 5 )]
 

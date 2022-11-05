@@ -46,6 +46,8 @@ script = ExtResource( 10 )
 
 [node name="RestartTimer" type="Timer" parent="."]
 
+[node name="ActualizadorTimer" type="Timer" parent="."]
+
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
 
 [node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
@@ -170,3 +172,4 @@ rotation = -4.46638e-06
 
 [connection signal="tween_completed" from="TweenCamara" to="." method="_on_TweenCamara_tween_completed"]
 [connection signal="timeout" from="RestartTimer" to="." method="_on_RestartTimer_timeout"]
+[connection signal="timeout" from="ActualizadorTimer" to="." method="_on_ActualizadorTimer_timeout"]

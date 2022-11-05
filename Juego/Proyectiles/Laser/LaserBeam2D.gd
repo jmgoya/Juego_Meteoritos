@@ -4,9 +4,9 @@ extends RayCast2D
 
 ## Variables Export
 # implementamos energia y radio de desgaste
-export var energia:float = 200
+export var energia:float = 100
 export var radio_danio:float = 50
-export var radio_desgaste:float = -40
+export var radio_desgaste:float = -20
 
 # Speed at which the laser extends when first fired, in pixels per seconds.
 export var cast_speed := 7000.0
@@ -49,6 +49,7 @@ func set_is_casting(cast: bool) -> void:
 		fill.points[1] = cast_to
 		appear()
 	else:
+		Eventos.emit_signal("ocultar_energia_laser")
 		laser_sfx.stop() # JMG detiene sonido
 		collision_particles.emitting = false
 		disappear()
@@ -92,3 +93,5 @@ func controlar_energia(consumo: float) -> void:
 	energia += consumo
 	if energia > energia_original:
 		energia = energia_original
+	Eventos.emit_signal("cambio_energia_laser", energia_original, energia)
+	print ("Energia Laser: ", energia)

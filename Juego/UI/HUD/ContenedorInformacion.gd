@@ -28,6 +28,9 @@ func ocultar_suavizado() -> void:
 func modificar_texto(text: String) -> void:
 	texto_contenedor.text = text
 
+func set_auto_ocultar(ocultar:bool) -> void:
+	auto_ocultar = ocultar
+
 ## Señales Internas
 func _on_AutoOcultarTimer_timeout() -> void:
 	ocultar_suavizado()

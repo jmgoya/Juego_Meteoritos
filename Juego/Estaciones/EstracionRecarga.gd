@@ -3,7 +3,7 @@ class_name EstacioRecarga
 extends Node2D
 
 ## Atributos Export
-export var energia:float = 10
+export var energia:float = 500
 export var radio_energia_entregada:float = 0.5
 
 onready var carga_sfx:AudioStreamPlayer = $AudioCarga
@@ -20,6 +20,8 @@ func _unhandled_input(event: InputEvent) -> void:
 		nave_player.get_escudo().controlar_energia(radio_energia_entregada)
 	if event.is_action("recargar_rayo"):
 		nave_player.get_laser().controlar_energia(radio_energia_entregada)
+	if event.is_action_released("recargar_escudo"):
+		Eventos.emit_signal("ocultar_energia_laser")
 
 # Metodos Custom
 func puede_recargar(event: InputEvent) -> bool:
@@ -38,12 +40,15 @@ func controlar_energia() -> void:
 # Señales internas
 func _on_AreaRecarga_body_entered(body: Node) -> void:
 	if body is Player:
+		player_en_zona = true
 		nave_player = body
 		Eventos.emit_signal("detecto_zona_recarga", true)
 
 func _on_AreaRecarga_body_exited(body: Node) -> void:
 	if body is Player:
+		player_en_zona  =false
 		Eventos.emit_signal("detecto_zona_recarga", false)
+		Eventos.emit_signal("ocultar_energia_laser")
 
 func _on_AreaColision_body_entered(body: Node) -> void:
 	if body.has_method("destruir"):

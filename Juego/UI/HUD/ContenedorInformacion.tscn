@@ -68,7 +68,8 @@ tracks/0/keys = {
 }
 
 [sub_resource type="DynamicFont" id=6]
-size = 12
+size = 11
+outline_size = 2
 outline_color = Color( 0.0862745, 0.00784314, 0.00784314, 1 )
 font_data = ExtResource( 3 )
 

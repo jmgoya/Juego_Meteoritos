@@ -20,8 +20,10 @@ func _unhandled_input(event: InputEvent) -> void:
 		nave_player.get_escudo().controlar_energia(radio_energia_entregada)
 	if event.is_action("recargar_rayo"):
 		nave_player.get_laser().controlar_energia(radio_energia_entregada)
-	if event.is_action_released("recargar_escudo"):
+	if event.is_action_released("recargar_rayo"):
 		Eventos.emit_signal("ocultar_energia_laser")
+	if event.is_action_released("recargar_escudo"):
+		Eventos.emit_signal("ocultar_energia_escudo")
 
 # Metodos Custom
 func puede_recargar(event: InputEvent) -> bool:

@@ -10,7 +10,7 @@ export var sector_meteoritos:PackedScene = null
 export var tiempo_transicion_camara:int = 2
 export var enemigo_interceptor:PackedScene = null
 export var rele_masa:PackedScene = null
-export var tiempo_limite:int = 202
+export var tiempo_limite:int = 505
 
 ## Atributos onready
 onready var contenedor_proyectiles:Node

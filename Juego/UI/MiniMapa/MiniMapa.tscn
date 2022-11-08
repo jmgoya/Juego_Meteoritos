@@ -51,6 +51,7 @@ scale = Vector2( 0.5, 0.5 )
 texture = ExtResource( 5 )
 
 [node name="IconoRele" type="Sprite" parent="CuadroMiniMapa/ContenedorIconos/ZonaRenderMiniMapa"]
+visible = false
 modulate = Color( 0.0705882, 0.666667, 0.709804, 1 )
 position = Vector2( 127, 40 )
 scale = Vector2( 0.5, 0.5 )
@@ -64,7 +65,15 @@ scale = Vector2( 0.4, 0.4 )
 texture = ExtResource( 4 )
 
 [node name="IconoInterceptor" type="Sprite" parent="CuadroMiniMapa/ContenedorIconos/ZonaRenderMiniMapa"]
+visible = false
 modulate = Color( 0.886275, 0.603922, 0.0627451, 1 )
 position = Vector2( 188, 51 )
 scale = Vector2( 0.4, 0.4 )
 texture = ExtResource( 7 )
+
+[node name="TweenVisibilidad" type="Tween" parent="."]
+
+[node name="TimerVisibilidad" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="timeout" from="TimerVisibilidad" to="." method="_on_TimerVisibilidad_timeout"]

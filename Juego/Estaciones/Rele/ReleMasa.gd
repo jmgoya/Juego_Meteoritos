@@ -2,6 +2,10 @@
 class_name ReleDeMasa
 extends Node2D
 
+# Metodos
+func _ready() -> void:
+	Eventos.emit_signal("minimapa_objeto_creado")
+
 # Metodos Custom
 func atraer_player(body: Node) -> void:
 	$Tween.interpolate_property(
@@ -25,7 +29,6 @@ func _on_DetectorPlayer_body_entered(body: Node) -> void:
 	$AnimationPlayer.play("super_activada")
 	body.desactivar_controles()
 	atraer_player(body)
-
 
 func _on_Tween_tween_completed(object: Object, key: NodePath) -> void:
 	print ("PASAMOS A OTRO NIVEL")

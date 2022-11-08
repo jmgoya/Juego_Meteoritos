@@ -54,6 +54,7 @@ func destruir_me() -> void:
 		$Sprites/SpaceStation029.global_position
 	]
 	Eventos.emit_signal("base_destruida", self, posiciones )
+	Eventos.emit_signal("minimapa_objeto_destruido", self)
 	queue_free()
 
 func spawnear_orbital() -> void:

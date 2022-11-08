@@ -138,7 +138,7 @@ func transicion_camaras(desde:Vector2, hasta:Vector2, camara_actual:Camera2D, ti
 func control_de_peligros() -> void:
 	peligros_totales -= 1
 	Eventos.emit_signal("cambio_numero_meteoritos", peligros_totales)
-	if peligros_totales <= 0:
+	if peligros_totales == 0:
 		contenedor_sector_meteoritos.get_child(0).queue_free()
 		$Player/CameraPlayer.set_puede_hacer_zoom(true)
 		var zoom_actual = $Player/CameraPlayer.zoom

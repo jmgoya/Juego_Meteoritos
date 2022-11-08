@@ -1,9 +1,10 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://icono.png" type="Texture" id=1]
 [ext_resource path="res://Juego/UI/HUD/HUD.gd" type="Script" id=2]
 [ext_resource path="res://Juego/UI/HUD/ContenedorInformacion.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Juego/UI/HUD/ContenedorInformacionEnergia.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Juego/UI/MiniMapa/MiniMapa.tscn" type="PackedScene" id=5]
 
 [sub_resource type="Animation" id=1]
 length = 0.001
@@ -108,16 +109,21 @@ script = ExtResource( 2 )
 [node name="FadeCanvas" type="CanvasLayer" parent="."]
 
 [node name="ColorRect" type="ColorRect" parent="FadeCanvas"]
-margin_right = 1279.0
-margin_bottom = 721.0
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
 mouse_filter = 2
 color = Color( 0, 0, 0, 1 )
 
 [node name="TextureRect" type="TextureRect" parent="FadeCanvas/ColorRect"]
-margin_left = 532.0
-margin_top = 303.0
-margin_right = 731.0
-margin_bottom = 456.0
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -99.5
+margin_top = -76.5
+margin_right = 99.5
+margin_bottom = 76.5
 mouse_filter = 2
 texture = ExtResource( 1 )
 expand = true
@@ -130,17 +136,30 @@ anims/dafault = SubResource( 2 )
 anims/fade_in = SubResource( 3 )
 
 [node name="InfoZonaRecarga" parent="." groups=["contenedor_info"] instance=ExtResource( 3 )]
+margin_left = 4.0
+margin_top = 4.0
+margin_right = 177.0
+margin_bottom = 83.0
 
 [node name="Label" parent="InfoZonaRecarga" index="1"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -84.0
+margin_top = -24.5
+margin_right = 84.0
+margin_bottom = 24.5
 text = "EN ZONA DE
 RECARGA"
-autowrap = true
 
 [node name="InfoMeteoritos" parent="." groups=["contenedor_info"] instance=ExtResource( 3 )]
-margin_left = 1.0
-margin_top = 674.0
-margin_right = 126.0
-margin_bottom = 720.0
+anchor_top = 1.0
+anchor_bottom = 1.0
+margin_left = 4.0
+margin_top = -126.0
+margin_right = 220.0
+margin_bottom = -4.0
 
 [node name="AnimationPlayer" parent="InfoMeteoritos" index="0"]
 anims/mostrar = SubResource( 4 )
@@ -149,32 +168,62 @@ anims/ocultar = SubResource( 6 )
 anims/ocultar_suavizado = SubResource( 7 )
 
 [node name="Label" parent="InfoMeteoritos" index="1"]
-autowrap = true
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -104.5
+margin_top = -46.5
+margin_right = 104.5
+margin_bottom = 46.5
+text = "Meteoritos Restantes"
+clip_text = false
 
 [node name="InfoTiempoRestante" parent="." groups=["contenedor_info"] instance=ExtResource( 3 )]
-margin_left = 548.0
-margin_top = 2.0
-margin_right = 698.0
-margin_bottom = 48.0
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -127.5
+margin_top = 4.0
+margin_right = 127.5
+margin_bottom = 66.0
 rect_scale = Vector2( 1.16218, 1.16218 )
 
 [node name="Label" parent="InfoTiempoRestante" index="1"]
-margin_right = 146.0
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -119.0
+margin_top = -26.0
+margin_right = 119.0
+margin_bottom = 26.0
+text = "Tiempo Restante
+23:20"
 
 [node name="InfoLaser" parent="." groups=["contenedor_info"] instance=ExtResource( 4 )]
-margin_left = 1149.0
-margin_top = 668.0
-margin_right = 1274.0
-margin_bottom = 714.0
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -167.0
+margin_top = -90.0
+margin_right = -8.0
+margin_bottom = -8.0
 
 [node name="Label" parent="InfoLaser" index="1"]
 text = "Energia Laser"
+clip_text = false
 
 [node name="InfoEscudo" parent="." groups=["contenedor_info"] instance=ExtResource( 4 )]
-margin_left = 1148.0
-margin_top = 614.0
-margin_right = 1273.0
-margin_bottom = 660.0
+margin_left = 1753.0
+margin_top = 901.0
+margin_right = 1912.0
+margin_bottom = 983.0
+
+[node name="Label" parent="InfoEscudo" index="1"]
+clip_text = false
+
+[node name="MiniMapa" parent="." instance=ExtResource( 5 )]
 
 [editable path="InfoZonaRecarga"]
 [editable path="InfoMeteoritos"]

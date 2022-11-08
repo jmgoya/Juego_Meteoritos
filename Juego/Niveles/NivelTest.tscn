@@ -33,7 +33,7 @@ environment = ExtResource( 3 )
 [node name="TriggersLluviaMeteoritos" type="Node" parent="."]
 
 [node name="SectorDePeligro" parent="TriggersLluviaMeteoritos" instance=ExtResource( 6 )]
-position = Vector2( 982, -802 )
+position = Vector2( 1367, 512 )
 tipo_peligro = "Meteorito"
 
 [node name="CameraNivel" type="Camera2D" parent="."]
@@ -154,10 +154,14 @@ texture = ExtResource( 9 )
 position = Vector2( 5, 2.38419e-07 )
 scale = Vector2( 0.8, 0.8 )
 
+[node name="EstracionRecarga2" parent="ContenedorEstaciones" instance=ExtResource( 11 )]
+position = Vector2( 5239, 285 )
+scale = Vector2( 0.8, 0.8 )
+
 [node name="TriggersInterceptores" type="Node" parent="."]
 
 [node name="SectorDePeligro" parent="TriggersInterceptores" instance=ExtResource( 6 )]
-position = Vector2( 844, 561 )
+position = Vector2( 6288, 372 )
 tipo_peligro = "Enemigo"
 numero_peligros = 2
 
@@ -167,7 +171,19 @@ position = Vector2( 1677, 1007 )
 [node name="ContenedorBaseEnemiga" type="Node" parent="."]
 
 [node name="BaseEnemiga" parent="ContenedorBaseEnemiga" instance=ExtResource( 13 )]
-position = Vector2( 4199, -429 )
+position = Vector2( 3844, -618 )
+rotation = -4.46638e-06
+
+[node name="BaseEnemiga2" parent="ContenedorBaseEnemiga" instance=ExtResource( 13 )]
+position = Vector2( 3836, 1209 )
+rotation = -4.46638e-06
+
+[node name="BaseEnemiga3" parent="ContenedorBaseEnemiga" instance=ExtResource( 13 )]
+position = Vector2( 7597, 1277 )
+rotation = -4.46638e-06
+
+[node name="BaseEnemiga4" parent="ContenedorBaseEnemiga" instance=ExtResource( 13 )]
+position = Vector2( 7514, -784 )
 rotation = -4.46638e-06
 
 [connection signal="tween_completed" from="TweenCamara" to="." method="_on_TweenCamara_tween_completed"]

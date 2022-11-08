@@ -74,6 +74,7 @@ texture = ExtResource( 7 )
 [node name="TweenVisibilidad" type="Tween" parent="."]
 
 [node name="TimerVisibilidad" type="Timer" parent="."]
+wait_time = 5.0
 one_shot = true
 
 [connection signal="timeout" from="TimerVisibilidad" to="." method="_on_TimerVisibilidad_timeout"]

@@ -68,6 +68,12 @@ enabled = true
 cast_to = Vector2( 1000, 0 )
 collision_mask = 33
 
+[node name="BarraSalud" parent="." index="6"]
+margin_left = -67.0
+margin_top = 25.0
+margin_right = -16.0
+margin_bottom = 39.0
+
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]
 
 [editable path="Canion"]

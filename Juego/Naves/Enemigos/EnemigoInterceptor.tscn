@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://Juego/Naves/Enemigos/laserRed10.png" type="Texture" id=1]
 [ext_resource path="res://Juego/Naves/Enemigos/enemigo.png" type="Texture" id=2]
@@ -143,6 +143,24 @@ radius = 498.29
 [sub_resource type="CircleShape2D" id=7]
 radius = 429.075
 
+[sub_resource type="StyleBoxFlat" id=9]
+bg_color = Color( 0.721569, 0.776471, 0.0431373, 1 )
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color( 0.0392157, 0.00392157, 0.00392157, 1 )
+border_blend = true
+
+[sub_resource type="StyleBoxFlat" id=10]
+bg_color = Color( 0.854902, 0.231373, 0.0627451, 1 )
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color( 0.0156863, 0.0156863, 0.0156863, 1 )
+border_blend = true
+
 [node name="EnemigoInterceptor" groups=["minimapa"] instance=ExtResource( 3 )]
 scale = Vector2( 0.5, 0.5 )
 collision_layer = 2
@@ -155,7 +173,7 @@ script = ExtResource( 4 )
 potencia_max = 300.0
 
 [node name="Sprite" parent="." index="0"]
-rotation = 1.5708
+rotation = -1.5708
 texture = ExtResource( 2 )
 
 [node name="CollisionShape2D" parent="." index="1"]
@@ -167,10 +185,10 @@ proyectil = ExtResource( 5 )
 cadencia_disparo = 1.5
 
 [node name="PuntoIzquierdo" parent="Canion" index="0"]
-position = Vector2( -10, -36 )
+position = Vector2( -6, -28 )
 
 [node name="PuntoDerecho" parent="Canion" index="1"]
-position = Vector2( -10, 36 )
+position = Vector2( -6, 30 )
 
 [node name="TimerEnfriamiento" parent="Canion" index="3"]
 wait_time = 10.0
@@ -195,6 +213,14 @@ collision_layer = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AreaDeteccion" index="0"]
 shape = SubResource( 7 )
+
+[node name="BarraSalud" parent="." index="8"]
+margin_left = -118.0
+margin_top = 95.0
+margin_right = 71.0
+margin_bottom = 109.0
+custom_styles/fg = SubResource( 9 )
+custom_styles/bg = SubResource( 10 )
 
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]
 [connection signal="body_entered" from="AreaDisparo" to="." method="_on_AreaDisparo_body_entered"]

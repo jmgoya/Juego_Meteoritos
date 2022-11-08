@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=21 format=2]
 
 [ext_resource path="res://Juego/Estaciones/spaceStation_029.png" type="Texture" id=1]
 [ext_resource path="res://Juego/Estaciones/spaceStation_017.png" type="Texture" id=2]
@@ -11,6 +11,7 @@
 [ext_resource path="res://Juego/Estaciones/PosicionesSpawn.gd" type="Script" id=9]
 [ext_resource path="res://Juego/Estaciones/RutaEnemigo2.tscn" type="PackedScene" id=10]
 [ext_resource path="res://Juego/Estaciones/RutaEnemigo.tscn" type="PackedScene" id=11]
+[ext_resource path="res://Juego/Naves/BarraSalud.tscn" type="PackedScene" id=12]
 
 [sub_resource type="CapsuleShape2D" id=5]
 radius = 44.0
@@ -84,6 +85,24 @@ tracks/1/keys = {
 "update": 0,
 "values": [ 0.0, 360.0 ]
 }
+
+[sub_resource type="StyleBoxFlat" id=8]
+bg_color = Color( 0.0705882, 0.819608, 0.784314, 1 )
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color( 0.0392157, 0.00392157, 0.00392157, 1 )
+border_blend = true
+
+[sub_resource type="StyleBoxFlat" id=9]
+bg_color = Color( 0.854902, 0.231373, 0.0627451, 1 )
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color( 0.0156863, 0.0156863, 0.0156863, 1 )
+border_blend = true
 
 [node name="BaseEnemiga" type="Node2D" groups=["minimapa"]]
 position = Vector2( 0, -1 )
@@ -165,6 +184,16 @@ position = Vector2( 500, 0 )
 position = Vector2( -500, 0 )
 
 [node name="TimerSpawnerEnemigos" type="Timer" parent="."]
+
+[node name="BarraSalud" parent="." instance=ExtResource( 12 )]
+margin_left = -106.999
+margin_top = -287.0
+margin_right = 107.001
+margin_bottom = -260.0
+rect_rotation = 0.0
+custom_styles/fg = SubResource( 8 )
+custom_styles/bg = SubResource( 9 )
+siempre_visible = true
 
 [connection signal="body_entered" from="AreaColision" to="." method="_on_AreaColision_body_entered"]
 [connection signal="screen_entered" from="VisibilityNotifier2D" to="." method="_on_VisibilityNotifier2D_screen_entered"]

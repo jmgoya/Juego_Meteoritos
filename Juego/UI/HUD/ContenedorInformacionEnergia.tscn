@@ -28,7 +28,6 @@ margin_top = 5.0
 margin_right = 63.5
 margin_bottom = 22.0
 text = "Energia Escudo"
-autowrap = true
 
 [node name="ProgressBar" type="ProgressBar" parent="." index="3"]
 anchor_left = 0.5

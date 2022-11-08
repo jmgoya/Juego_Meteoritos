@@ -15,12 +15,14 @@ var estado_actual:int = ESTADOS.SPAWN
 onready var canion:Canion = $Canion
 onready var colisionador:CollisionShape2D = $CollisionShape2D
 onready var impacto_sfx:AudioStreamPlayer = $ImpactosSFX
+onready var barra_salud:ProgressBar = $BarraSalud
 
 #JMG
 onready var animacion:AnimationPlayer = $AnimationPlayer
 
 ## Metodos
 func _ready() -> void:
+	barra_salud.set_valores(hitpoints)
 	cambiar_estado(estado_actual)
 
 ## Metodos Custom
@@ -52,6 +54,7 @@ func recibir_danio(intensidad_danio:float) -> void:
 		destruir()
 	#animacion.play("impacto")
 	impacto_sfx.play()
+	barra_salud.controlar_barra(hitpoints, true)
 
 ## señales internas
 func _on_AnimationPlayer_animation_finished(anim_name: String) -> void:

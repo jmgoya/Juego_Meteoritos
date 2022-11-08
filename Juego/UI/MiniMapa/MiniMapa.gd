@@ -26,12 +26,6 @@ func set_esta_visible(hacer_visible: bool) -> void:
 	if hacer_visible:
 		timer_visibilidad.start()
 	esta_visible = hacer_visible
-	print ("Visible: ", esta_visible)
-	if esta_visible:
-		print ("Lo haremos visible")
-	else:
-		print ("Lo haremos invisible")
-
 	tween_visibilidad.interpolate_property(
 		self,
 		"modulate",
@@ -41,10 +35,13 @@ func set_esta_visible(hacer_visible: bool) -> void:
 		Tween.TRANS_LINEAR,
 		Tween.EASE_IN_OUT
 	)
-	print (self.modulate)
+	tween_visibilidad.start()
+
 
 ## Metodos
 func _ready() -> void:
+	timer_visibilidad.wait_time = tiempo_visible
+	modulate = Color(1,1,1,0)
 	set_process(false)
 	icono_player.position = zona_renderizado.rect_size * 0.5
 	escala_grilla = zona_renderizado.rect_size / (get_viewport_rect().size * escala_zoom)

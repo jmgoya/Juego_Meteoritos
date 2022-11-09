@@ -159,13 +159,14 @@ _global_script_class_icons={
 [application]
 
 config/name="Meteoritos"
-run/main_scene="res://Juego/Niveles/NivelTest.tscn"
+run/main_scene="res://Juego/UI/Menu/MenuPrincipal.tscn"
 config/icon="res://playerShip1_orange.png"
 
 [autoload]
 
-Eventos="*res://Autoloads/Eventos.gd"
-DatosJuego="*res://Autoloads/DatosJuego.gd"
+Eventos="*res://Juego/Autoloads/Eventos.gd"
+DatosJuego="*res://Juego/Autoloads/DatosJuego.gd"
+MusicaJuego="*res://Juego/Autoloads/MusicaJuego.tscn"
 
 [display]
 

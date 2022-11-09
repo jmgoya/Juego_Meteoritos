@@ -1,0 +1,23 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/POL-air-sharks-short.wav-56d00e00a2d4c6d1b2ff414a1a64e27b.sample"
+
+[deps]
+
+source_file="res://Juego/Musica/POL-air-sharks-short.wav"
+dest_files=[ "res://.import/POL-air-sharks-short.wav-56d00e00a2d4c6d1b2ff414a1a64e27b.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=2
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

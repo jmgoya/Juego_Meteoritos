@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/boton.ogg-5dbc42825e7ba0dc57758b4ed0c3b7c3.oggstr"
+
+[deps]
+
+source_file="res://Juego/UI/SFX/boton.ogg"
+dest_files=[ "res://.import/boton.ogg-5dbc42825e7ba0dc57758b4ed0c3b7c3.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

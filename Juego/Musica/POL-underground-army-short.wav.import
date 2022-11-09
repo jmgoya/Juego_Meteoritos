@@ -1,0 +1,23 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/POL-underground-army-short.wav-87cae1e2787b3e2c3f5102641198a179.sample"
+
+[deps]
+
+source_file="res://Juego/Musica/POL-underground-army-short.wav"
+dest_files=[ "res://.import/POL-underground-army-short.wav-87cae1e2787b3e2c3f5102641198a179.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=2
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

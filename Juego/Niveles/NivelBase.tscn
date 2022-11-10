@@ -1,24 +1,21 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://Juego/Naves/Player/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Juego/Niveles/Nivel.gd" type="Script" id=2]
 [ext_resource path="res://default_env.tres" type="Environment" id=3]
 [ext_resource path="res://Juego/Explosiones/Explosion.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Juego/Explosiones/ExplosionMeteorito.tscn" type="PackedScene" id=5]
-[ext_resource path="res://Juego/Peligros/SectorDePeligro.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Juego/Meteoritos/Meteorito.tscn" type="PackedScene" id=7]
 [ext_resource path="res://Juego/Meteoritos/SectorMeteoritos.tscn" type="PackedScene" id=8]
 [ext_resource path="res://Juego/Niveles/Fondos/StarFieldBackground.tscn" type="PackedScene" id=9]
 [ext_resource path="res://Juego/Niveles/CamaraJuego.gd" type="Script" id=10]
-[ext_resource path="res://Juego/Estaciones/EstracionRecarga.tscn" type="PackedScene" id=11]
 [ext_resource path="res://Juego/Naves/Enemigos/EnemigoInterceptor.tscn" type="PackedScene" id=12]
-[ext_resource path="res://Juego/Estaciones/BaseEnemiga.tscn" type="PackedScene" id=13]
 [ext_resource path="res://Juego/Estaciones/Rele/ReleMasa.tscn" type="PackedScene" id=14]
 [ext_resource path="res://Juego/UI/HUD/HUD.tscn" type="PackedScene" id=15]
 [ext_resource path="res://Juego/Musica/POL-the-boxer-short.wav" type="AudioStream" id=16]
 [ext_resource path="res://Juego/Musica/POL-air-sharks-short.wav" type="AudioStream" id=17]
 
-[node name="NivelTest" type="Node2D"]
+[node name="NivelBase" type="Node2D"]
 script = ExtResource( 2 )
 musica_nivel = ExtResource( 16 )
 musica_combate = ExtResource( 17 )
@@ -36,10 +33,6 @@ environment = ExtResource( 3 )
 
 [node name="TriggersLluviaMeteoritos" type="Node" parent="."]
 
-[node name="SectorDePeligro" parent="TriggersLluviaMeteoritos" instance=ExtResource( 6 )]
-position = Vector2( 1367, 512 )
-tipo_peligro = "Meteorito"
-
 [node name="CameraNivel" type="Camera2D" parent="."]
 position = Vector2( 1029, 542 )
 script = ExtResource( 10 )
@@ -54,44 +47,15 @@ script = ExtResource( 10 )
 
 [node name="ContenedorEstaciones" type="Node" parent="."]
 
-[node name="EstracionRecarga" parent="ContenedorEstaciones" instance=ExtResource( 11 )]
-position = Vector2( 5, 2.38419e-07 )
-scale = Vector2( 0.8, 0.8 )
-
-[node name="EstracionRecarga2" parent="ContenedorEstaciones" instance=ExtResource( 11 )]
-position = Vector2( 5239, 285 )
-scale = Vector2( 0.8, 0.8 )
-
 [node name="TriggersInterceptores" type="Node" parent="."]
-
-[node name="SectorDePeligro" parent="TriggersInterceptores" instance=ExtResource( 6 )]
-position = Vector2( 6288, 372 )
-tipo_peligro = "Enemigo"
-numero_peligros = 2
-
-[node name="Player" parent="." instance=ExtResource( 1 )]
-position = Vector2( 1677, 1007 )
 
 [node name="ContenedorBaseEnemiga" type="Node" parent="."]
 
-[node name="BaseEnemiga" parent="ContenedorBaseEnemiga" instance=ExtResource( 13 )]
-position = Vector2( 3844, -618 )
-rotation = -4.46638e-06
-
-[node name="BaseEnemiga2" parent="ContenedorBaseEnemiga" instance=ExtResource( 13 )]
-position = Vector2( 3836, 1209 )
-rotation = -4.46638e-06
-
-[node name="BaseEnemiga3" parent="ContenedorBaseEnemiga" instance=ExtResource( 13 )]
-position = Vector2( 7597, 1277 )
-rotation = -4.46638e-06
-
-[node name="BaseEnemiga4" parent="ContenedorBaseEnemiga" instance=ExtResource( 13 )]
-position = Vector2( 7514, -784 )
-rotation = -4.46638e-06
-
 [node name="StarFieldBackground" parent="." instance=ExtResource( 9 )]
 color_fondo = Color( 0.0156863, 0.0196078, 0.113725, 1 )
+
+[node name="Player" parent="." instance=ExtResource( 1 )]
+position = Vector2( 1677, 1007 )
 
 [connection signal="tween_completed" from="TweenCamara" to="." method="_on_TweenCamara_tween_completed"]
 [connection signal="timeout" from="RestartTimer" to="." method="_on_RestartTimer_timeout"]

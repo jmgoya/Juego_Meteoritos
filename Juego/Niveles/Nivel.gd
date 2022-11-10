@@ -3,6 +3,7 @@ class_name Nivel
 extends Node2D
 
 ## Atributos Export
+export (String, FILE, "*.tscn") var prox_nivel = ""
 export var musica_nivel:AudioStream = null
 export var musica_combate:AudioStream = null
 export var explosion:PackedScene = null
@@ -50,6 +51,7 @@ func conectar_seniales() ->void:
 	Eventos.connect("destruccion_meteorito", self, "_on_meteorito_destruido")
 	Eventos.connect("base_destruida", self,"_on_base_destruida")
 	Eventos.connect("spawn_orbital", self, "_on_spawn_orbital")
+	Eventos.connect("nivel_completado", self, "_on_nivel_completado")
 
 func crear_contenedores() ->void:
 	# contenedor proyectiles
@@ -232,3 +234,8 @@ func _on_ActualizadorTimer_timeout() -> void:
 	Eventos.emit_signal("actualizar_tiempo", tiempo_limite)
 	if tiempo_limite == 0:
 		destruir_nivel()
+
+func _on_nivel_completado() -> void:
+	Eventos.emit_signal("nivel_terminado")
+	yield(get_tree().create_timer(1.0), "timeout")
+	get_tree().change_scene(prox_nivel)

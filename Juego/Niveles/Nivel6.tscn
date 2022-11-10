@@ -1,0 +1,56 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Juego/Niveles/NivelBase.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Juego/Estaciones/BaseEnemiga.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Juego/Peligros/SectorDePeligro.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Juego/Estaciones/EstracionRecarga.tscn" type="PackedScene" id=4]
+
+[node name="Nivel6" instance=ExtResource( 1 )]
+prox_nivel = "res://Juego/Niveles/Nivel7.tscn"
+
+[node name="SectorDePeligro" parent="TriggersLluviaMeteoritos" index="0" instance=ExtResource( 3 )]
+position = Vector2( -1155, 498 )
+scale = Vector2( 4, 4 )
+tipo_peligro = "Meteorito"
+numero_peligros = 14
+
+[node name="EstracionRecarga" parent="ContenedorEstaciones" index="0" instance=ExtResource( 4 )]
+position = Vector2( -1805, 476 )
+
+[node name="EstracionRecarga2" parent="ContenedorEstaciones" index="1" instance=ExtResource( 4 )]
+position = Vector2( 1933, -3362 )
+
+[node name="EstracionRecarga3" parent="ContenedorEstaciones" index="2" instance=ExtResource( 4 )]
+position = Vector2( 2266, 5057 )
+
+[node name="SectorDePeligro2" parent="TriggersInterceptores" index="0" instance=ExtResource( 3 )]
+position = Vector2( 2182, 4451 )
+scale = Vector2( 4, 4 )
+tipo_peligro = "Enemigo"
+numero_peligros = 5
+
+[node name="BaseEnemiga" parent="ContenedorBaseEnemiga" index="0" instance=ExtResource( 2 )]
+position = Vector2( 4646, -1286 )
+
+[node name="BaseEnemiga2" parent="ContenedorBaseEnemiga" index="1" instance=ExtResource( 2 )]
+position = Vector2( 4573, 2364 )
+
+[node name="BaseEnemiga3" parent="ContenedorBaseEnemiga" index="2" instance=ExtResource( 2 )]
+position = Vector2( 10997, 370 )
+rotation = -4.46638e-06
+
+[node name="BaseEnemiga4" parent="ContenedorBaseEnemiga" index="3" instance=ExtResource( 2 )]
+position = Vector2( 90, -1249 )
+
+[node name="BaseEnemiga5" parent="ContenedorBaseEnemiga" index="4" instance=ExtResource( 2 )]
+position = Vector2( 34, 2223 )
+
+[node name="BaseEnemiga6" parent="ContenedorBaseEnemiga" index="5" instance=ExtResource( 2 )]
+position = Vector2( 7479, 404 )
+rotation = -4.46638e-06
+
+[node name="StarFieldBackground" parent="." index="10"]
+color_fondo = Color( 0.501961, 0.0745098, 0.713726, 1 )
+
+[node name="Player" parent="." index="11"]
+position = Vector2( 1019, 529 )

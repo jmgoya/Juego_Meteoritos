@@ -29,6 +29,9 @@ func _on_DetectorPlayer_body_entered(body: Node) -> void:
 	$AnimationPlayer.play("super_activada")
 	body.desactivar_controles()
 	atraer_player(body)
-
-func _on_Tween_tween_completed(object: Object, key: NodePath) -> void:
-	print ("PASAMOS A OTRO NIVEL")
+#
+#func _on_Tween_tween_completed(object: Object, key: NodePath) -> void:
+#	print ("PASAMOS A OTRO NIVEL")
+#
+func _on_Tween_tween_all_completed() -> void:
+	Eventos.emit_signal("nivel_completado")

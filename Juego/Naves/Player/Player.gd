@@ -70,21 +70,20 @@ func player_input() -> void:
 	if Input.is_action_pressed("mover_adelante"):
 		#estela.set_largo(estela_maxima)
 		empuje = Vector2(potencia_motor,0)
+		motor_sfx.sonido_on()
 	elif Input.is_action_pressed("mover_atras"):
 		#estela.set_largo(0)
 		empuje = Vector2(-potencia_motor,0)
-		
+		motor_sfx.sonido_off()
 	# Rotación
 	dir_rotacion = 0
 	if Input.is_action_pressed("rotar_antihorario"):
 		dir_rotacion -=1
 	elif Input.is_action_pressed("rotar_horario"):
 		dir_rotacion += 1
-	
 	# Disparo primario
 	if Input.is_action_just_pressed("disparo_principal"):
 		canion.set_esta_disparando(true)
-	
 	if Input.is_action_just_released("disparo_principal"):
 		canion.set_esta_disparando(false)
 

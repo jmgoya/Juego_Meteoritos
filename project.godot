@@ -158,7 +158,8 @@ _global_script_class_icons={
 
 [application]
 
-config/name="Meteoritos"
+config/name="Meteoritos (Juan Manuel Goya)"
+config/description="Juego de Meteoritos en el marco del curso de programacion en GODOT de Cenit, Gobierno del Chaco y Municipalidad de Machagai"
 run/main_scene="res://Juego/UI/Menu/MenuPrincipal.tscn"
 config/icon="res://playerShip1_orange.png"
 

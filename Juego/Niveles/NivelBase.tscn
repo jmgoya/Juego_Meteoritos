@@ -25,6 +25,7 @@ explosion_meteorito = ExtResource( 5 )
 sector_meteoritos = ExtResource( 8 )
 enemigo_interceptor = ExtResource( 12 )
 rele_masa = ExtResource( 14 )
+tiempo_limite = 10
 
 [node name="HUD" parent="." instance=ExtResource( 15 )]
 
@@ -42,6 +43,7 @@ script = ExtResource( 10 )
 [node name="TweenCamara" type="Tween" parent="."]
 
 [node name="RestartTimer" type="Timer" parent="."]
+one_shot = true
 
 [node name="ActualizadorTimer" type="Timer" parent="."]
 

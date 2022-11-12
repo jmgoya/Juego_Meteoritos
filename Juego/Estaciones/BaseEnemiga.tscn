@@ -155,7 +155,6 @@ rotation = -1.5708
 shape = SubResource( 7 )
 
 [node name="AreaAtraccion" parent="." instance=ExtResource( 5 )]
-collision_layer = 32
 
 [node name="SpriteZonaRecarga" parent="AreaAtraccion" index="1"]
 self_modulate = Color( 0.35, 0.39, 0.63, 0 )

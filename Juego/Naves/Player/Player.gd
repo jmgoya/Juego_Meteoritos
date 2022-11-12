@@ -98,3 +98,8 @@ func desactivar_controles() -> void:
 	empuje = Vector2.ZERO
 	motor_sfx.sonido_off()
 	laser.set_is_casting(false)
+
+func reparar_danio() -> void:
+	if hitpoints == hitpoints_total :
+		return
+	hitpoints += 1

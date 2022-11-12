@@ -27,10 +27,10 @@ can_sleep = false
 linear_damp = 1.5
 angular_damp = 4.5
 script = ExtResource( 3 )
-hitpoints = 200.0
-potencia_motor = 30
+hitpoints_total = null
+potencia_motor = null
 potencia_rotacion = 200
-estela_maxima = 150
+estela_maxima = null
 
 [node name="Sprite" parent="." index="0"]
 rotation = 1.5708

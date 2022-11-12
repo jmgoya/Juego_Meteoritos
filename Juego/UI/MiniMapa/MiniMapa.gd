@@ -96,13 +96,20 @@ func modificar_posicion_iconos() -> void:
 		var item_icono:Sprite = items_mini_mapa[item]
 		var offset_pos:Vector2 = item.position - player.position
 		var pos_icono:Vector2 = offset_pos * escala_grilla + (zona_renderizado.rect_size * 0.5)
+		##JMG solucion
+		if (pos_icono.x < 0 or pos_icono.x > zona_renderizado.rect_size.x or 
+		pos_icono.y < 0 or pos_icono.y > zona_renderizado.rect_size.y):
+			item_icono.scale = Vector2(0.3, 0.3)
+		else:
+			item_icono.scale = Vector2(0.5, 0.5)
+		
 		pos_icono.x = clamp(pos_icono.x, 0, zona_renderizado.rect_size.x)
 		pos_icono.y = clamp(pos_icono.y, 0, zona_renderizado.rect_size.y)
 		item_icono.position = pos_icono
-		if zona_renderizado.get_rect().has_point(pos_icono - zona_renderizado.rect_position):
-			item_icono.scale = Vector2(0.5, 0.5)
-		else:
-			item_icono.scale = Vector2(0.3, 0.3)
+#		if zona_renderizado.get_rect().has_point(pos_icono - zona_renderizado.rect_position):
+#			item_icono.scale = Vector2(0.5, 0.5)
+#		else:
+#			item_icono.scale = Vector2(0.3, 0.3)
 
 func quitar_icono(objeto: Node2D) -> void:
 	if objeto in items_mini_mapa:

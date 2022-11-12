@@ -213,7 +213,7 @@ func _on_base_destruida(base, partes_pos: Array) -> void:
 		yield(get_tree().create_timer(0.5),"timeout")
 	
 	numero_bases_enemigas -=1
-	if numero_bases_enemigas == 0:
+	if numero_bases_enemigas == 0 and player:
 		crear_rele()
 
 func _on_spawn_orbital(enemigo: EnemigoOrbital) -> void:

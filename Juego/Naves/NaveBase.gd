@@ -6,22 +6,25 @@ extends RigidBody2D
 enum ESTADOS {SPAWN, VIVO, INVENCIBLE, MUERTO}
 
 ## Atributos Export
-export var hitpoints:float = 100
+export var hitpoints_total:float = 100
 
 ## Atributos
 var estado_actual:int = ESTADOS.SPAWN
+var hitpoints:float = 0
 
 ## Atributos onready
 onready var canion:Canion = $Canion
 onready var colisionador:CollisionShape2D = $CollisionShape2D
 onready var impacto_sfx:AudioStreamPlayer = $ImpactosSFX
 onready var barra_salud:ProgressBar = $BarraSalud
+onready var tiempo_reparacion:Timer = $TiempoReparacion
 
 #JMG
 onready var animacion:AnimationPlayer = $AnimationPlayer
 
 ## Metodos
 func _ready() -> void:
+	hitpoints = hitpoints_total
 	barra_salud.set_valores(hitpoints)
 	cambiar_estado(estado_actual)
 
@@ -55,6 +58,19 @@ func recibir_danio(intensidad_danio:float) -> void:
 	#animacion.play("impacto")
 	impacto_sfx.play()
 	barra_salud.controlar_barra(hitpoints, true)
+	if name == "Player":
+		tiempo_reparacion.stop()
+		tiempo_reparacion.wait_time = 5
+		tiempo_reparacion.start()
+
+func reparar() -> void:
+	tiempo_reparacion.stop()
+	if hitpoints >= hitpoints_total - 4:
+		return
+	hitpoints += 4
+	tiempo_reparacion.wait_time = 1
+	tiempo_reparacion.start()
+	barra_salud.controlar_barra(hitpoints, true)
 
 ## señales internas
 func _on_AnimationPlayer_animation_finished(anim_name: String) -> void:
@@ -65,3 +81,6 @@ func _on_body_entered(body: Node) -> void:
 	if body is Meteorito or (body.name == "Player"):
 		body.destruir()
 		destruir()
+
+func _on_TiempoReparacion_timeout() -> void:
+	reparar()
